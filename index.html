@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المركبات</title>
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <h3>إدارة المركبات</h3>
+                <strong>إ.م</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-tachometer-alt"></i>
+                        لوحة التحكم
+                    </a>
+                </li>
+                <li>
+                    <a href="#driversSubmenu" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-users"></i>
+                        إدارة السائقين
+                    </a>
+                    <ul class="collapse list-unstyled" id="driversSubmenu">
+                        <li>
+                            <a href="#" id="addDriverBtn">إضافة سائق جديد</a>
+                        </li>
+                        <li>
+                            <a href="#" id="viewDriversBtn">عرض السائقين</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#projectsSubmenu" data-bs-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-project-diagram"></i>
+                        إدارة المشاريع
+                    </a>
+                    <ul class="collapse list-unstyled" id="projectsSubmenu">
+                        <li>
+                            <a href="#" id="addProjectBtn">إضافة مشروع جديد</a>
+                        </li>
+                        <li>
+                            <a href="#" id="viewProjectsBtn">عرض المشاريع</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-car"></i>
+                        إدارة المركبات
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        الإعدادات
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle"></i> مشرف
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#" id="changePasswordBtn">تغيير كلمة المرور</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#" id="logoutBtn">تسجيل الخروج</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <div class="container-fluid" id="mainContent">
+                <!-- Dynamic content will be loaded here -->
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="mt-3">مرحبًا بك في نظام إدارة المركبات</h2>
+                        <p class="lead">يمكنك إدارة السائقين والمركبات والمشاريع من هنا</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Driver Modal -->
+    <div class="modal fade" id="addDriverModal" tabindex="-1" aria-labelledby="addDriverModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="addDriverModalLabel">إضافة سائق جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="driverForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="driverName" class="form-label">اسم السائق</label>
+                                <input type="text" class="form-control" id="driverName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="driverId" class="form-label">رقم الهوية</label>
+                                <input type="text" class="form-control" id="driverId" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="phoneNumber" class="form-label">رقم الهاتف</label>
+                                <input type="tel" class="form-control" id="phoneNumber" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="region" class="form-label">المنطقة</label>
+                                <select class="form-select" id="region" required>
+                                    <option value="" selected disabled>اختر المنطقة</option>
+                                    <option value="الرياض">الرياض</option>
+                                    <option value="مكة المكرمة">مكة المكرمة</option>
+                                    <!-- Add all regions here -->
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="vehicleType" class="form-label">نوع المركبة</label>
+                                <select class="form-select" id="vehicleType" required>
+                                    <option value="" selected disabled>اختر نوع المركبة</option>
+                                    <option value="سيدان بدجت">سيدان بدجت</option>
+                                    <option value="بيجو">بيجو</option>
+                                    <!-- Add all vehicle types here -->
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="project" class="form-label">المشروع</label>
+                                <div class="input-group">
+                                    <select class="form-select" id="project" required>
+                                        <option value="" selected disabled>اختر المشروع</option>
+                                        <!-- Projects will be loaded dynamically -->
+                                    </select>
+                                    <button class="btn btn-outline-secondary" type="button" id="addProjectQuick">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Add all other fields here -->
+                            
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">حفظ البيانات</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="addProjectModalLabel">إضافة مشروع جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="projectForm">
+                        <div class="mb-3">
+                            <label for="projectName" class="form-label">اسم المشروع</label>
+                            <input type="text" class="form-control" id="projectName" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">حفظ المشروع</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="changePasswordModalLabel">تغيير كلمة المرور</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="passwordForm">
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">كلمة المرور الحالية</label>
+                            <input type="password" class="form-control" id="currentPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">كلمة المرور الجديدة</label>
+                            <input type="password" class="form-control" id="newPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">تغيير كلمة المرور</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal (will be shown by default) -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="false" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="loginModalLabel">تسجيل الدخول</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">اسم المستخدم</label>
+                            <input type="text" class="form-control" id="username" value="مشرف" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" id="password" value="00" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">دخول</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
